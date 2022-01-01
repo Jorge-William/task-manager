@@ -1,12 +1,9 @@
 // CRUD create, read, update, delete
 
-const { MongoClient, ObjectID } = require('mongodb')
+const { MongoClient } = require('mongodb')
 
 const connectionURL = 'mongodb://127.0.0.1:27017'
 const databaseName = 'task-manager'
-
-const id = new ObjectID()
-console.log(id);
 
 MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) => {
 	if (error) {
@@ -14,65 +11,25 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
 	}
 	const db = client.db(databaseName)
 
-	// --------------------------------------- INSERT ONE 
+	// ------------------findOne() (retorno o primeiro registro que bater com a descrição)--------------------------------
 
-	db.collection('users').insertOne({
-		name: 'James Gosling',
-		age: 64
-	}, (error, result) => {
+	db.collection('users').findOne({ completed: true }, (error, user) => {
 		if (error) {
-			return console.log('Operation denied')
+			return console.log(error);
 		}
-		console.log(result.insertedId);
+		console.log(user);
 	})
 
+	// ---------------------------find() (vários retornos em um array de objetos) ---------------------------------
 
-	// console.log('Connected correctly');
+	db.collection('tasks').find({ completed: false }).toArray((error, user) => {
+		if (error) {
+			return console.log(error)
+		}
+		console.log(user);
+	})
 
-	// --------------------------------------- INSERT MANY
-
-	// db.collection('users').insertMany([
-	// 	{
-	// 		name: 'Danielle Elizabeth',
-	// 		age: 41
-	// 	}
-	// 	, {
-	// 		name: 'Gabrhiel Heringer',
-	// 		age: 17
-	// 	}
-	// 	, {
-	// 		name: 'Raphel Heringer',
-	// 		age: 7
-	// 	}, {
-	// 		name: 'Mariah Heringer',
-	// 		age: 2
-	// 	}, {
-	// 		name: 'Jorge William',
-	// 		age: 36
-	// 	}
-
-	// ], (error, result) => {
-	// 	if (error) {
-	// 		return console.log('Não foi possível executar a operação.');
-	// 	}
-	// 	console.log(result.acknowledged);
-	// })
-
-	// db.collection('tasks').insertMany([
-	// 	{
-	// 		description: 'Wash my car',
-	// 		completed: true
-	// 	}, {
-	// 		description: 'Walk with the dog.',
-	// 		completed: false
-	// 	}
-	// ], (error, result) => {
-	// 	if (error) {
-	// 		return console.log("Operation not performed");
-	// 	}
-
-	// 	console.log(result.insertedCount);
-	// })
+	// ---------------------------------------------------------------------
 
 
 })
