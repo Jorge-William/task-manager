@@ -8,6 +8,7 @@ app.use(express.json())
 
 const port = process.env.PORT || 3001
 
+// ------------------ Cria um novo usuário
 app.post('/users', (req, res) => {
 	const user = new User(req.body)
 
@@ -23,9 +24,9 @@ app.post('/users', (req, res) => {
 				res.status(400).send(error)
 			}
 		)
-
 })
 
+// --------------------- Cria uma nova tarefa
 app.post('/tasks', (req, res) => {
 	const task = new Task(req.body)
 
@@ -34,8 +35,32 @@ app.post('/tasks', (req, res) => {
 	}).catch((error) => {
 		res.status(400).send(error)
 	})
-
 })
+
+// ------------------ Busca todos os usuários do banco de dados (tipo select * no sql)
+app.get('/users', (req, res) => {
+	User.find({}).then((queryResult) => {
+		res.send(queryResult)
+	}).catch((error) => {
+		res.status(500).send()
+	})
+})
+
+// ------------------ Busca um usuário específico no banco de dados
+app.get('/users/:id', (req, res) => {
+	const _id = req.params.id
+
+	User.findById(_id).then((result) => {
+		if (!result) {
+			return res.status(404).send()
+		}
+		res.status(200).send(result)
+	}).catch((error) => {
+		res.status(404).send(error)
+	})
+})
+
+
 
 
 app.listen(port, () => {
