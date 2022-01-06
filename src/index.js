@@ -60,6 +60,16 @@ app.get('/users/:id', (req, res) => {
 	})
 })
 
+// ------------------ Busca todas as tarefas
+app.get('/tasks', (req, res) => {
+	Task.find().then((results) => {
+		res.status(200).send(results)
+	}).catch((error) => {
+		res.status(404).send(error)
+	})
+})
+
+
 
 
 
