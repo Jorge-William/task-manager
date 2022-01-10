@@ -79,6 +79,23 @@ app.get('/task/:id', async (req, res) => {
   }
 });
 
+// ------------------ Atualiza os dados de um determinado usuário
+app.patch('/users/:id', async (req, res) => {
+  const _id = req.params.id;
+  try {
+    const user = await User.findByIdAndUpdate(_id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+
+    if (!user) {
+      return res.status(400).send();
+    }
+
+    res.send(user);
+  } catch (error) {}
+});
+
 app.listen(port, () => {
   console.log('Server running on port', port);
 });
