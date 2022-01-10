@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-const validator = require('validator')
+const mongoose = require('mongoose');
+const validator = require('validator');
 
 const User = mongoose.model('User', {
   name: {
@@ -12,20 +12,20 @@ const User = mongoose.model('User', {
     required: true,
     trim: true,
     lowercase: true,
-    validade(value) {
+    validate(value) {
       if (!validator.isEmail(value)) {
-        throw new Error('You should insert a valid email')
+        throw new Error('You should insert a valid email');
       }
-    }
+    },
   },
   age: {
     type: Number,
     default: 0,
     validate(value) {
       if (value < 0) {
-        throw new Error('The number should be greater than 0.')
+        throw new Error('The number should be greater than 0.');
       }
-    }
+    },
   },
   password: {
     type: String,
@@ -33,10 +33,10 @@ const User = mongoose.model('User', {
     trim: true,
     validate(value) {
       if (value.length < 6 || validator.contains(value, 'password')) {
-        throw new Error('Insert a password with minimum six digits')
+        throw new Error('Insert a password with minimum six digits');
       }
-    }
-  }
-})
+    },
+  },
+});
 
-module.exports = User
+module.exports = User;
