@@ -104,7 +104,9 @@ app.patch('/users/:id', async (req, res) => {
 		}
 
 		res.send(user)
-	} catch (error) {}
+	} catch (error) {
+		res.send(error)
+	}
 })
 
 app.listen(port, () => {
