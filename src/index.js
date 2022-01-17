@@ -85,9 +85,12 @@ app.get('/task/:id', async (req, res) => {
 app.patch('/users/:id', async (req, res) => {
 	const updates = Object.keys(req.body)
 	const allowedUpdates = ['name', 'email', 'password', 'age']
+
 	const isValidOperation = updates.every((update) => {
-		allowedUpdates.includes(update)
+		return allowedUpdates.includes(update)
 	})
+
+	console.log(isValidOperation)
 
 	if (!isValidOperation) {
 		return res.status(400).send({ error: 'Invalid updates' })
@@ -105,9 +108,11 @@ app.patch('/users/:id', async (req, res) => {
 
 		res.send(user)
 	} catch (error) {
-		res.send(error)
+		res.status(error)
 	}
 })
+
+// ------------------ Atualiza os dados de uma determinda tarefa---------------------
 
 app.listen(port, () => {
 	console.log('Server running on port', port)
