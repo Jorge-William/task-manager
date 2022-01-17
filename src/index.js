@@ -113,6 +113,32 @@ app.patch('/users/:id', async (req, res) => {
 })
 
 // ------------------ Atualiza os dados de uma determinda tarefa---------------------
+app.patch('/tasks/:id', async (req, res) => {
+	const updates = Object.keys(req.body)
+	const allowedUpdates = ['description', 'completed']
+	const updateValid = updates.every((update) => {
+		return allowedUpdates.includes(update)
+	})
+
+	if (!updateValid) {
+		return res.status(400).send({ error: 'Invalid Update' })
+	}
+
+	try {
+		const task = await Task.findByIdAndUpdate(req.params.id, req.body, {
+			new: true,
+			runValidators: true
+		})
+
+		if (!task) {
+			return res.status(400).send({ error: 'Task not updated' })
+		}
+
+		res.send(task)
+	} catch (error) {
+		res.send({ error: error })
+	}
+})
 
 app.listen(port, () => {
 	console.log('Server running on port', port)
