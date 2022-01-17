@@ -9,7 +9,7 @@ app.use(express.json())
 const port = process.env.PORT || 3001
 
 // ------------------ Cria um novo usuário
-app.post('/users', async (req, res) => {
+app.post('/user', async (req, res) => {
 	const user = new User(req.body)
 	try {
 		await user.save()
@@ -21,7 +21,7 @@ app.post('/users', async (req, res) => {
 })
 
 // --------------------- Cria uma nova tarefa
-app.post('/tasks', async (req, res) => {
+app.post('/task', async (req, res) => {
 	const task = new Task(req.body)
 	try {
 		await task.save()
