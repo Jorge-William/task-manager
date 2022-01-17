@@ -4,6 +4,10 @@
 Esse repositório foi criado com o fim de exercitar minhas habilidades em Express.js, Postman, Rest API, Node.js, Mongoose e MongoDB
 
 
+## Status
+Em progresso (Falta o Delete)
+
+
 ### Padrão de dados de um usuário:
 
 ```
