@@ -5,7 +5,7 @@ Esse repositório foi criado com o fim de exercitar minhas habilidades em Expres
 
 
 ## Status
-Em progresso (Falta o Delete)
+Em progresso...
 
 
 ### Padrão de dados de um usuário:
