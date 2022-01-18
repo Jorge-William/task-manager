@@ -140,6 +140,36 @@ app.patch('/tasks/:id', async (req, res) => {
 	}
 })
 
+// ------------------ Deleta um usuário pelo id ------------------------
+app.delete('/user/:id', async (req, res) => {
+	try {
+		const user = await User.findByIdAndDelete(req.params.id)
+
+		if (!user) {
+			return res.status(400).send()
+		}
+
+		res.send(user)
+	} catch (error) {
+		res.send({ error: error })
+	}
+})
+
+// ------------------ Deleta uma tarefa pelo id -----------------------
+app.delete('/task/:id', async (req, res) => {
+	try {
+		const task = await Task.findByIdAndDelete(req.params.id)
+
+		if (!task) {
+			return res.status(400).send()
+		}
+
+		res.send(task)
+	} catch (error) {
+		res.send({ error: error })
+	}
+})
+
 app.listen(port, () => {
 	console.log('Server running on port', port)
 })
