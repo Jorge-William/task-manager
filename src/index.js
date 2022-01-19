@@ -146,7 +146,7 @@ app.delete('/user/:id', async (req, res) => {
 		const user = await User.findByIdAndDelete(req.params.id)
 
 		if (!user) {
-			return res.status(400).send()
+			return res.status(400).send({ message: 'User not found' })
 		}
 
 		res.send(user)
@@ -161,7 +161,7 @@ app.delete('/task/:id', async (req, res) => {
 		const task = await Task.findByIdAndDelete(req.params.id)
 
 		if (!task) {
-			return res.status(400).send()
+			return res.status(400).send({ message: 'task not found' })
 		}
 
 		res.send(task)
