@@ -11,6 +11,7 @@ Em progresso...
 - As operações CRUD com node(Express)
 - Rest API
 - Organização de pastas no lado do servidor
+- Como funciona a estrutura de pasta
 - Conexão e operações do MondoDB com o ODM(Object Data Model) Mongoose 
 
 ### Padrão de dados de um usuário:
