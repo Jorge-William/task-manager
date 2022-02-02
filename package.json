@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js -e js"
   },
   "keywords": [],
   "author": "",
@@ -16,5 +16,8 @@
     "mongodb": "^4.2.2",
     "mongoose": "^6.1.4",
     "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
