@@ -14,6 +14,19 @@ router.post('/user', async (req, res) => {
 	}
 })
 
+// ------------------ Login de usuário
+router.post('/user/login', async (req, res) => {
+	try {
+		const user = await User.findByCredentials(
+			req.body.email,
+			req.body.password
+		)
+		res.send(user)
+	} catch (error) {
+		res.status(400).send(error)
+	}
+})
+
 // ------------------ Busca todos os usuários do banco de dados (tipo select * no sql)
 router.get('/users', async (req, res) => {
 	try {
