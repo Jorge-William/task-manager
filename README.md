@@ -3,15 +3,19 @@
 
 Esse repositório foi criado com o fim de exercitar minhas habilidades em Express.js, Postman, Rest API, Node.js, Mongoose e MongoDB
 
+![Captura de Tela 2022-02-10 às 15 55 09](https://user-images.githubusercontent.com/19416864/153477103-2f7e6962-6dc0-4388-bb53-c7809fdf5973.png)
+
 
 ## Status
 Em progresso...
 
 ## O que apredi?
 - As operações CRUD com node(Express)
+- JWT (JSON Web Token)
+- Encriptação de dados
 - Rest API
 - Organização de pastas no lado do servidor
-- Como funciona a estrutura de pasta
+- Configurar Postman
 - Conexão e operações do MondoDB com o ODM(Object Data Model) Mongoose 
 
 ### Padrão de dados de um usuário:
